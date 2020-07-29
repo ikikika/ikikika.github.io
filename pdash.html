@@ -39,6 +39,11 @@
         text-align: center;
         width: 100%;
       }
+      .blue-text {
+        color: #17d4fe;
+        text-align: center;
+        font-size: 65px;
+      }
     </style>
   </head>
   <body>
@@ -46,6 +51,14 @@
       <div class="container-fluid">
         <div class="row">
           <div id="MyClockDisplay" onload="showTime()"></div>
+        </div>
+        <div class="row" style="margin: -20px 0px 60px 0px;">
+          <div class="col-sm">
+            <div id="showDate" class="blue-text"></div>
+          </div>
+          <div class="col-sm">
+            <div id="showDay" class="blue-text"></div>
+          </div>
         </div>
         <div class="row">
           <div class="col-sm">
@@ -78,10 +91,22 @@
       var taskList = ["Quadrant", "GM Loading", "UCP"];
 
       function showTime() {
+        var weekday = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ];
         var date = new Date();
         var h = date.getHours(); // 0 - 23
         var m = date.getMinutes(); // 0 - 59
         var s = date.getSeconds(); // 0 - 59
+        var day = weekday[date.getDay()];
+        var yyyymmdd = formatDate(date);
         var session = "AM";
 
         if (h == 0) {
@@ -100,8 +125,11 @@
         var time = h + ":" + m + ":" + s + " " + session;
         document.getElementById("MyClockDisplay").innerHTML = time;
         document.getElementById("MyClockDisplay").textContent = time;
+        document.getElementById("showDate").textContent = yyyymmdd;
+        document.getElementById("showDay").textContent = day;
 
         setTimeout(showTime, 1000);
+        console.log(yyyymmdd);
       }
 
       showTime();
@@ -111,13 +139,13 @@
         var element = document.getElementById("learn_list_body");
         element.innerHTML +=
           `<tr>
-            <th scope="row">` +
+              <th scope="row">` +
           n +
           `</th>
-            <td>` +
+              <td>` +
           item +
           `</td>
-          </tr>`;
+            </tr>`;
       });
 
       taskList.forEach((item, index) => {
@@ -125,14 +153,26 @@
         var element = document.getElementById("task_list_body");
         element.innerHTML +=
           `<tr>
-            <th scope="row">` +
+              <th scope="row">` +
           n +
           `</th>
-            <td>` +
+              <td>` +
           item +
           `</td>
-          </tr>`;
+            </tr>`;
       });
+
+      function formatDate(date) {
+        var d = new Date(date),
+          month = "" + (d.getMonth() + 1),
+          day = "" + d.getDate(),
+          year = d.getFullYear();
+
+        if (month.length < 2) month = "0" + month;
+        if (day.length < 2) day = "0" + day;
+
+        return [year, month, day].join("-");
+      }
     </script>
   </body>
 </html>
