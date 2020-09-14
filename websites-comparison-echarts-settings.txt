@@ -1,0 +1,59 @@
+option = {
+    title: {
+        text: '基础雷达图'
+    },
+    tooltip: {},
+    legend: {
+        data: [ 
+            'Ideal Choice', 'Wordpress', 
+                'Online site builder (eg WIX, Squarespace)', 
+                'Customised (Site only)',
+                'Customised (Site+Backend)'
+                ]
+    },
+    radar: {
+        // shape: 'circle',
+        name: {
+            textStyle: {
+                color: '#fff',
+                backgroundColor: '#999',
+                borderRadius: 3,
+                padding: [3, 5]
+            }
+        },
+        indicator: [
+            { name: 'Security', max: 5},
+            { name: 'Flexibility', max: 5},
+            { name: 'Budget', max: 5},
+            { name: 'Time Required', max: 5},
+            { name: 'Maintenance', max: 5},
+        ]
+    },
+    series: [{
+        name: '预算 vs 开销（Budget vs spending）',
+        type: 'radar',
+        // areaStyle: {normal: {}},
+        data: [
+            {
+                value: [5, 5, 1, 1, 1],
+                name: 'Ideal Choice'
+            },
+            {
+                value: [1, 2, 3, 4, 2],
+                name: 'Wordpress'
+            },
+            {
+                value: [5, 3, 3, 2, 1],
+                name: 'Online site builder (eg WIX, Squarespace)'
+            },
+            {
+                value: [4, 1, 1, 1, 5],
+                name: 'Customised (Site only)'
+            },
+            {
+                value: [4, 5, 5, 5, 2],
+                name: 'Customised (Site+Backend)'
+            },
+        ]
+    }]
+};
